@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ajoutez ces styles à votre fichier CSS existant */
+
+/* Menu hamburger du chat */
+#chat-menu-btn {
+  transition: all 0.2s ease-in-out;
+}
+
+#chat-menu-btn:hover {
+  transform: scale(1.05);
+}
+
+#chat-menu {
+  min-width: 200px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+#chat-menu button {
+  transition: all 0.2s ease-in-out;
+  font-size: 0.875rem;
+}
+
+#chat-menu button:hover {
+  background-color: rgba(55, 65, 81, 0.8);
+  transform: translateX(2px);
+}
+
+#chat-menu button:hover svg {
+  transform: scale(1.1);
+}
+
+#chat-menu hr {
+  margin: 0.25rem 0;
+  border-color: rgba(75, 85, 99, 0.5);
+}
+
+/* Animation pour l'apparition du menu */
+#chat-menu.hidden {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 0.2s ease-in-out;
+}
+
+#chat-menu:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #chat-menu {
+    right: -10px;
+    min-width: 180px;
+  }
+}

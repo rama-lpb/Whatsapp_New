@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatApp</title>
+  </head>
+  <body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 h-screen w-screen flex items-center justify-center">
+    <div id="app" class="max-w-screen">
+
+
+      <!-- page coo normal  -->
+
+      <div id="login-page" class="bg-gray-800 rounded-lg p-8  shadow-2xl h-[550px]">
+        <!-- Logo et titre -->
+        <div class="text-center mb-8">
+          <div class="w-20 h-20 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3.04 1.05 4.35L2 22l5.65-1.05C9.96 21.64 11.46 22 13 22h-1c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.4 0-2.76-.3-4-.84L6 20l.84-2C6.3 16.76 6 15.4 6 14c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/>
+              <circle cx="9" cy="12" r="1"/>
+              <circle cx="12" cy="12" r="1"/>
+              <circle cx="15" cy="12" r="1"/>
+            </svg>
+          </div>
+          <h1 class="text-white text-2xl font-bold mb-2">ChatApp</h1>
+          <p class="text-gray-400 text-sm">Rejoignez la conversation</p>
+        </div>
+
+        <!-- Formulaire de connexion -->
+        <form id="login-form" class="space-y-6">
+          <!-- Nom complet -->
+          <div>
+            <label class="flex items-center text-gray-300 text-sm mb-2">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+              Nom complet
+            </label>
+            <input 
+              type="text" 
+              id="fullname" 
+              class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
+              
+              
+            />
+          </div>
+
+          <!-- Numéro de téléphone -->
+          <div>
+            <label class="flex items-center text-gray-300 text-sm mb-2">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              Numéro de téléphone
+            </label>
+            <input 
+              type="tel" 
+              id="phone" 
+              class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
+              
+            />
+            <p class="text-xs text-gray-500 mt-1">Formats acceptés: +221 77 928 39 40 ou 77 484 93 02</p>
+          </div>
+
+          <!-- Bouton de connexion -->
+          <button 
+            type="submit" 
+            class="w-full bg-yellow-500 hover:bg-yellow-500 text-white font-medium py-3 px-2 rounded-lg transition duration-200 ease-in-out transform hover:scale-105"
+          >
+            Se connecter
+          </button>
+          
+          <p class="text-center text-gray-400 text-sm mt-2">
+            Pas encore de compte ?
+            <a href="#" id="show-register-link" class="text-yellow-400 hover:underline">S'inscrire</a>
+          </p>
+        </form>
+
+        <!-- Message de sécurité -->
+        <div class="flex items-center justify-center mt-6 text-xs text-gray-500">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- Formulaire d'inscription (caché par défaut) -->
+<form id="register-form" class="space-y-6 hidden">
+  <!-- Nom complet -->
+  <div>
+    <label class="flex items-center text-gray-300 text-sm mb-2">
+      <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+      </svg>
+      Nom complet
+    </label>
+    <input 
+      type="text" 
+      id="register-name" 
+      class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
+    />
+  </div>
+
+  <!-- Numéro de téléphone -->
+  <div>
+    <label class="flex items-center text-gray-300 text-sm mb-2">
+      <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+      </svg>
+      Numéro de téléphone
+    </label>
+    <input 
+      type="tel" 
+      id="register-phone" 
+      class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
+    />
+    <p class="text-xs text-gray-500 mt-1">Formats acceptés: +221 77 928 39 40 ou 77 484 93 02</p>
+  </div>
+
+  <!-- Bouton inscription -->
+  <button 
+    type="submit" 
+    class="w-full bg-yellow-500 hover:bg-yellow-500 text-white font-medium py-3 px-4 rounded-lg transition duration-200 ease-in-out transform hover:scale-105"
+  >
+    S'inscrire
+  </button>
+  <p class="text-center text-gray-400 text-sm mt-2">
+    Déjà inscrit ?
+    <a href="#" id="show-login-link" class="text-yellow-500 hover:underline">Se connecter</a>
+  </p>
+</form>
+        
+        </div>
+      </div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      <!-- Interface de messagerie (cachée initialement) -->
+      <div id="chat-page" class=" w-screen bg-transparent flex items-center justify-center">
+        <div class="flex w-full max-w-7xl h-[94vh] bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-800">
+          <!-- Sidebar des conversations -->
+          <div class="bg-gray-800 border-r border-gray-700 flex flex-col w-80 min-w-[260px] max-w-xs">
+            <!-- Header de la sidebar -->
+            <div class="p-4 border-b border-gray-700">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center">
+                    <span class="text-white font-medium" id="user-avatar"></span>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-white font-medium" id="user-name"></h3>
+                    <p class="text-gray-400 text-sm">En ligne</p>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between p-4 border-b border-gray-700">
+                  <div class="flex items-center space-x-2">
+                    <span id="user-name" class="text-white font-medium"></span>
+                  </div>
+                  <div class="relative">
+                    <button id="sidebar-menu-btn" class="text-gray-400 hover:text-white focus:outline-none">
+                      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <circle cx="5" cy="12" r="2"/>
+                        <circle cx="12" cy="12" r="2"/>
+                        <circle cx="19" cy="12" r="2"/>
+                      </svg>
+                    </button>
+                    <div id="sidebar-menu" class="hidden absolute left-0 mt-2 w-40 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50">
+                      <button id="profil-btn" class="block w-full text-left px-4 py-2 text-gray-200 hover:bg-gray-700">Profil</button>
+                      <button id="logout-btn" class="block w-full text-left px-4 py-2 text-gray-200 hover:bg-gray-700">Déconnexion</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Barre de recherche -->
+            <div class="p-4">
+              <div class="relative">
+                <input 
+                  type="text" 
+                  placeholder="search contact"
+                  class="w-full bg-gray-700 text-white px-4 py-2 pl-10 rounded-lg border border-gray-600 focus:border-yellow-500 focus:outline-none"
+                />
+                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="p-4 pt-0">
+              <div id="filters" class="flex space-x-2">
+                <button class="px-3 py-1 rounded-full bg-gray-700 text-white text-xs font-medium hover:bg-yellow-500 focus:bg-yellow-500 transition" data-filter="all">
+                  Tous
+                </button>
+                <button class="px-3 py-1 rounded-full bg-gray-700 text-white text-xs font-medium hover:bg-yellow-500 focus:bg-yellow-500 transition" data-filter="favorites">
+                  Favoris
+                </button>
+                <button class="px-3 py-1 rounded-full bg-gray-700 text-white text-xs font-medium hover:bg-yellow-500 focus:bg-yellow-500 transition" data-filter="unread">
+                  Non lues
+                </button>
+                <button class="px-3 py-1 rounded-full bg-gray-700 text-white text-xs font-medium hover:bg-yellow-500 focus:bg-yellow-500 transition" data-filter="groups">
+                  Groupes
+                </button>
+              </div>
+            </div>
+
+            <!-- Liste des conversations -->
+            <div class="flex-1 overflow-y-auto" id="conversations-list">
+              <!-- Les conversations seront ajoutées dynamiquement -->
+            </div>
+          </div>
+
+          <!-- Zone de chat principale -->
+          <div class="flex-1 min-w-0 flex flex-col bg-gray-950">
+            <!-- Header du chat -->
+            <div class="bg-gray-900 p-4 border-b border-gray-700" id="chat-header">
+              <div class="flex items-center">
+                <div class="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center">
+                  <span class="text-white font-medium">?</span>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-white font-medium">Sélectionnez une conversation</h3>
+                  <p class="text-gray-400 text-sm">Choisissez un contact pour commencer à discuter</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Zone des messages -->
+            <div class="flex-1 overflow-y-auto p-4 bg-gray-900" id="messages-container">
+              <div class="flex items-center justify-center h-full">
+                <div class="text-center">
+                  <div class="w-32 h-32 bg-gray-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <svg class="w-16 h-16 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3.04 1.05 4.35L2 22l5.65-1.05C9.96 21.64 11.46 22 13 22h-1c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+                    </svg>
+                  </div>
+                  <h3 class="text-white text-xl font-medium mb-2">Bienvenue sur ChatApp</h3>
+                  <p class="text-gray-400">Sélectionnez une conversation pour commencer à discuter</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Zone de saisie des messages -->
+            <div class="bg-gray-800 p-4 border-t border-gray-700" id="message-input-container">
+              <div class="flex items-center space-x-3">
+                <button class="text-gray-400 hover:text-white">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                  </svg>
+                </button>
+                <button class="text-gray-400 hover:text-white">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.5 1h-13C4.67 1 4 1.67 4 2.5S4.67 4 5.5 4h13c.83 0 1.5-.67 1.5-1.5S19.33 1 18.5 1zM12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                  </svg>
+                </button>
+                <div class="flex-1 relative">
+                  <input 
+                    type="text" 
+                    id="message-input"
+                    placeholder="Tapez un message..."
+                    class="w-full bg-gray-700 text-white px-4 py-2 pr-12 rounded-lg border border-gray-600 focus:border-yellow-500 focus:outline-none"
+                    disabled
+                  />
+                  <button class="absolute right-3 top-2 text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </button>
+                </div>
+                <button id="send-button" class="bg-yellow-500 hover:bg-yellow-500 text-white p-2 rounded-lg transition duration-200" disabled>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal de notification -->
+      <div id="popup-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+  <div class="bg-gray-800 rounded-lg p-6 shadow-xl max-w-xs w-full text-center">
+    <p id="popup-message" class="text-white mb-4"></p>
+    <button id="popup-close" class="bg-yellow-500 hover:bg-yellow-500 text-white px-4 py-2 rounded-lg font-medium">OK</button>
+  </div>
+</div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+

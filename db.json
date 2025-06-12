@@ -1,0 +1,245 @@
+{
+  "users": [
+    {
+      "id": "4fef",
+      "name": "rama gueye",
+      "phone": "771279062",
+      "avatar": "RG",
+      "status": "En ligne"
+    },
+    {
+      "id": "abfc",
+      "name": "FATOU ",
+      "phone": "333456789",
+      "avatar": "F",
+      "status": "En ligne"
+    },
+    {
+      "id": "463f",
+      "name": "amy",
+      "phone": "771279063",
+      "avatar": "A",
+      "status": "En ligne"
+    },
+    {
+      "id": "1749664925489y75pcwjo8",
+      "name": "rama",
+      "phone": "772882929",
+      "avatar": "R",
+      "status": "En ligne"
+    },
+    {
+      "id": "csow",
+      "name": "fatou",
+      "phone": "738293730",
+      "avatar": "F",
+      "status": "En ligne"
+    },
+    {
+      "id": "qv62",
+      "name": "ddd",
+      "phone": "383939383",
+      "avatar": "D",
+      "status": "En ligne"
+    },
+    {
+      "id": "l1sb",
+      "name": "rama gueye",
+      "phone": "773829373",
+      "avatar": "RG",
+      "status": "En ligne"
+    },
+    {
+      "id": "wqo887dqo",
+      "name": "fatou fall",
+      "phone": "738293793",
+      "avatar": "FF",
+      "status": "En ligne"
+    },
+    {
+      "id": "kfajyhekb",
+      "name": "saliou",
+      "phone": "993736373",
+      "avatar": "S",
+      "status": "En ligne"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "1749664925501ksu8wxgmw",
+      "participants": [
+        "4fef",
+        "1749664925489y75pcwjo8"
+      ],
+      "lastMessage": "Nouvelle conversation",
+      "lastMessageTime": "2025-06-11T18:02:05.501Z",
+      "unreadCount": 0,
+      "createdAt": "2025-06-11T18:02:05.501Z"
+    },
+    {
+      "id": "6187",
+      "participants": [
+        "4fef",
+        "csow"
+      ],
+      "lastMessage": "Nouvelle conversation",
+      "lastMessageTime": "2025-06-11T18:04:32.266Z",
+      "unreadCount": 0,
+      "createdAt": "2025-06-11T18:04:32.266Z"
+    },
+    {
+      "id": "f2va",
+      "participants": [
+        "4fef",
+        "qv62"
+      ],
+      "lastMessage": "Nouvelle conversation",
+      "lastMessageTime": "2025-06-11T18:04:59.212Z",
+      "unreadCount": 0,
+      "createdAt": "2025-06-11T18:04:59.212Z"
+    },
+    {
+      "id": "00f7",
+      "participants": [
+        "4fef",
+        "l1sb"
+      ],
+      "lastMessage": "Nouvelle conversation",
+      "lastMessageTime": "2025-06-11T18:18:43.514Z",
+      "unreadCount": 0,
+      "createdAt": "2025-06-11T18:18:43.514Z"
+    },
+    {
+      "id": "bbu6c2czv",
+      "participants": [
+        "4fef",
+        "wqo887dqo"
+      ],
+      "lastMessage": "Nouvelle conversation",
+      "lastMessageTime": "2025-06-12T08:14:08.572Z",
+      "unreadCount": 0,
+      "createdAt": "2025-06-12T08:14:08.572Z"
+    },
+    {
+      "id": "2gurcmidy",
+      "participants": [
+        "4fef",
+        "kfajyhekb"
+      ],
+      "lastMessage": "",
+      "lastMessageTime": "2025-06-12T09:28:46.961Z",
+      "unreadCount": 0,
+      "createdAt": "2025-06-12T09:28:46.961Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": null,
+      "conversationId": "f2va",
+      "senderId": "4fef",
+      "content": "🔥👍🤔😂🎉😍😍🎉😍🔥😍🎉🔥❤️😍😀😂👍👍😀❤️❤️🤔😀🤔😀",
+      "timestamp": "2025-06-11T18:11:36.107Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": null,
+      "conversationId": "f2va",
+      "senderId": "4fef",
+      "content": "salut",
+      "timestamp": "2025-06-11T18:11:46.127Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": null,
+      "conversationId": "f2va",
+      "senderId": "4fef",
+      "content": "hee",
+      "timestamp": "2025-06-11T18:15:21.716Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": null,
+      "conversationId": "00f7",
+      "senderId": "4fef",
+      "content": "😂😍",
+      "timestamp": "2025-06-11T18:18:54.244Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": "6",
+      "conversationId": "f2va",
+      "senderId": "4fef",
+      "content": "😀🔥🔥🤔🤔🔥🔥😍🎉😀😂😀😂🔥😂🎉❤️👍🎉❤️🔥😂😍❤️🤔🎉",
+      "timestamp": "2025-06-11T18:29:17.349Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": null,
+      "conversationId": "1749664925501ksu8wxgmw",
+      "senderId": "4fef",
+      "content": "ll",
+      "timestamp": "2025-06-12T01:27:26.743Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": null,
+      "conversationId": "bbu6c2czv",
+      "senderId": "4fef",
+      "content": "salut",
+      "timestamp": "2025-06-12T08:14:16.462Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": null,
+      "conversationId": "2gurcmidy",
+      "senderId": "4fef",
+      "content": "lllllllllllm",
+      "timestamp": "2025-06-12T09:28:56.535Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": 5,
+      "conversationId": "00f7",
+      "senderId": "4fef",
+      "content": "kk",
+      "timestamp": "2025-06-12T13:10:48.509Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": null,
+      "conversationId": "bbu6c2czv",
+      "senderId": "4fef",
+      "content": "nnn",
+      "timestamp": "2025-06-12T14:24:39.442Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": null,
+      "conversationId": "f2va",
+      "senderId": "4fef",
+      "content": "n",
+      "timestamp": "2025-06-12T17:49:39.164Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": 36,
+      "conversationId": "f2va",
+      "senderId": "4fef",
+      "content": "l",
+      "timestamp": "2025-06-12T17:49:42.719Z",
+      "type": "text",
+      "status": "sent"
+    }
+  ]
+}
