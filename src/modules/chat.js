@@ -271,7 +271,7 @@ export class ChatManager {
     if (!messageText) return;
 
     const messageData = {
-      id: Date.now().toString(),
+      // Retire 'id' si le backend le refuse
       conversationId: this.currentConversation.id,
       senderId: this.currentUser.id,
       content: messageText,
@@ -280,27 +280,21 @@ export class ChatManager {
       status: 'sent'
     };
 
-    // Ajouter le message localement d'abord
-    this.messages.push(messageData);
-    this.renderMessages();
-    this.messageInput.value = '';
-
-    // Envoyer au serveur
-    const savedMessage = await ApiService.sendMessage(messageData);
-    if (savedMessage) {
-      // Mettre à jour la conversation avec le texte du message envoyé
-      this.currentConversation.lastMessage = messageText;
-      this.currentConversation.lastMessageTime = messageData.timestamp;
-
-      // Mets à jour côté ContactsManager
-      if (this.contactsManager && typeof this.contactsManager.updateConversation === 'function') {
-        this.contactsManager.updateConversation(this.currentConversation);
+    try {
+      const savedMessage = await ApiService.sendMessage(messageData);
+      if (savedMessage) {
+        this.currentConversation.lastMessage = messageText;
+        this.currentConversation.lastMessageTime = messageData.timestamp;
+        if (this.contactsManager && typeof this.contactsManager.updateConversation === 'function') {
+          this.contactsManager.updateConversation(this.currentConversation);
+        }
+        document.dispatchEvent(new CustomEvent('messageSent', { 
+          detail: { message: savedMessage, conversation: this.currentConversation } 
+        }));
       }
-
-      // Notifier les autres modules
-      document.dispatchEvent(new CustomEvent('messageSent', { 
-        detail: { message: savedMessage, conversation: this.currentConversation } 
-      }));
+    } catch (error) {
+      showNotification("Erreur lors de l'envoi du message. Le message n'a pas été stocké.");
+      console.error(error);
     }
   }
 

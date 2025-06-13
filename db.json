@@ -69,6 +69,13 @@
       "phone": "738293929",
       "avatar": "F",
       "status": "En ligne"
+    },
+    {
+      "id": "a4e3",
+      "name": "amy collé",
+      "phone": "771279061",
+      "avatar": "AC",
+      "status": "En ligne"
     }
   ],
   "conversations": [
@@ -148,6 +155,17 @@
       "lastMessageTime": "2025-06-13T01:14:58.346Z",
       "unreadCount": 0,
       "createdAt": "2025-06-13T01:14:58.346Z"
+    },
+    {
+      "id": "72b8cztay",
+      "participants": [
+        "a4e3",
+        "4fef"
+      ],
+      "lastMessage": "",
+      "lastMessageTime": "2025-06-13T11:55:57.838Z",
+      "unreadCount": 0,
+      "createdAt": "2025-06-13T11:55:57.838Z"
     }
   ],
   "messages": [
@@ -328,6 +346,42 @@
       "senderId": "4fef",
       "content": "nn",
       "timestamp": "2025-06-13T10:09:01.072Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": "1749815226396",
+      "conversationId": "00f7",
+      "senderId": "4fef",
+      "content": "salut",
+      "timestamp": "2025-06-13T11:47:06.396Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": "1749815764273",
+      "conversationId": "72b8cztay",
+      "senderId": "a4e3",
+      "content": "salam",
+      "timestamp": "2025-06-13T11:56:04.273Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": "1749815804451",
+      "conversationId": "72b8cztay",
+      "senderId": "4fef",
+      "content": "salam boy cv",
+      "timestamp": "2025-06-13T11:56:44.451Z",
+      "type": "text",
+      "status": "sent"
+    },
+    {
+      "id": "1749815834535",
+      "conversationId": "72b8cztay",
+      "senderId": "a4e3",
+      "content": "cv",
+      "timestamp": "2025-06-13T11:57:14.535Z",
       "type": "text",
       "status": "sent"
     }

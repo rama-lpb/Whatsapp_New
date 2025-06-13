@@ -158,8 +158,12 @@ export class ContactsManager {
 
   async loadConversations() {
     try {
-      this.conversations = await ApiService.getConversations() || [];
+      const allConversations = await ApiService.getConversations() || [];
       this.users = await ApiService.getUsers() || [];
+      // Filtrer les conversations pour ne garder que celles de l'utilisateur connecté
+      this.conversations = allConversations.filter(conv =>
+        conv.participants.includes(this.currentUser.id)
+      );
       this.renderConversations();
     } catch (error) {
       console.error('Erreur lors du chargement des conversations:', error);
