@@ -280,9 +280,13 @@ export class ChatManager {
         ];
         // Crée la conversation côté serveur et récupère l'objet conversation complet
         const createdConv = await ApiService.createConversation({ participants });
+
+        // Ajoute une vérification et un délai si besoin
         if (createdConv && createdConv.id) {
+          // Optionnel : attendre 200ms pour laisser le temps au backend d'écrire
+          await new Promise(res => setTimeout(res, 200));
           conversationId = createdConv.id;
-          this.currentConversation = createdConv; // <-- Utilise l'objet complet retourné
+          this.currentConversation = createdConv;
         } else {
           showNotification("Impossible de créer la conversation sur le serveur.");
           return;
