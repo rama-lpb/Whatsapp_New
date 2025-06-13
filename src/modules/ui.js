@@ -82,25 +82,12 @@ export class UIManager {
   }
 
   showWelcomeScreen() {
-    const messagesContainer = DOMUtils.getElementById(SELECTORS.messagesContainer);
-    if (messagesContainer) {
-      messagesContainer.innerHTML = `
-        <div class="flex items-center justify-center h-full">
-          <div class="text-center">
-            <div class="w-32 h-32 bg-gray-700 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <svg class="w-16 h-16 text-gray-200" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3.04 1.05 4.35L2 22l5.65-1.05C9.96 21.64 11.46 22 13 22h-1c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
-              </svg>
-              <svg class="w-16 h-16 text-yellow-500 mt-[5px] ml-[-40px]" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3.04 1.05 4.35L2 22l5.65-1.05C9.96 21.64 11.46 22 13 22h-1c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
-              </svg>
-            </div>
-            <h3 class="text-white text-xl font-medium mb-2">Bienvenue sur ChatApp</h3>
-            <p class="text-gray-400">Sélectionnez une conversation ou créez en une nouvelle pour commencer à discuter</p>
-            <p class="text-gray-600 mt-2 text-[14px]">Vos données sont chiffrées pour une meilleure protection de votre vie privée</p>
-          </div>
-        </div>
-      `;
-    }
+    document.getElementById('login-page').classList.remove('hidden');
+    document.getElementById('chat-page').classList.add('hidden');
+  }
+
+  showChatPage() {
+    document.getElementById('login-page').classList.add('hidden');
+    document.getElementById('chat-page').classList.remove('hidden');
   }
 }
