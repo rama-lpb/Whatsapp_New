@@ -278,17 +278,18 @@ export class ChatManager {
           this.currentUser.id,
           this.currentContact.id
         ];
+        // Crée la conversation côté serveur et récupère l'objet conversation complet
         const createdConv = await ApiService.createConversation({ participants });
         if (createdConv && createdConv.id) {
           conversationId = createdConv.id;
-          this.currentConversation.id = createdConv.id;
+          this.currentConversation = createdConv; // <-- Utilise l'objet complet retourné
         } else {
           showNotification("Impossible de créer la conversation sur le serveur.");
           return;
         }
       }
 
-      // 2. Prépare le message
+      // 2. Prépare le message avec l'id de conversation correct
       const messageData = {
         conversationId,
         senderId: this.currentUser.id,
@@ -301,11 +302,9 @@ export class ChatManager {
       // 3. Ajoute le message localement pour affichage immédiat
       this.messages.push(messageData);
       this.renderMessages();
-
-      // 4. Vide l'input
       this.messageInput.value = '';
 
-      // 5. Envoie le message au serveur
+      // 4. Envoie le message au serveur
       const savedMessage = await ApiService.sendMessage(messageData);
       if (savedMessage) {
         this.currentConversation.lastMessage = messageText;
