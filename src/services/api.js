@@ -1,5 +1,5 @@
-const API_BASE_URL = 'http://localhost:3001';
-
+const API_BASE_URL = import.meta.env.VITE_API_URL
+console.log(import.meta.env)
 export class ApiService {
   static async request(endpoint, options = {}) {
     try {
