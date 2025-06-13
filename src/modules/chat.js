@@ -270,17 +270,42 @@ export class ChatManager {
     const messageText = this.messageInput.value.trim();
     if (!messageText) return;
 
-    const messageData = {
-      // Retire 'id' si le backend le refuse
-      conversationId: this.currentConversation.id,
-      senderId: this.currentUser.id,
-      content: messageText,
-      timestamp: new Date().toISOString(),
-      type: 'text',
-      status: 'sent'
-    };
-
     try {
+      // 1. Vérifie si la conversation a un id côté serveur, sinon crée-la
+      let conversationId = this.currentConversation.id;
+      if (!conversationId) {
+        const participants = this.currentConversation.participants || [
+          this.currentUser.id,
+          this.currentContact.id
+        ];
+        const createdConv = await ApiService.createConversation({ participants });
+        if (createdConv && createdConv.id) {
+          conversationId = createdConv.id;
+          this.currentConversation.id = createdConv.id;
+        } else {
+          showNotification("Impossible de créer la conversation sur le serveur.");
+          return;
+        }
+      }
+
+      // 2. Prépare le message
+      const messageData = {
+        conversationId,
+        senderId: this.currentUser.id,
+        content: messageText,
+        timestamp: new Date().toISOString(),
+        type: 'text',
+        status: 'sent'
+      };
+
+      // 3. Ajoute le message localement pour affichage immédiat
+      this.messages.push(messageData);
+      this.renderMessages();
+
+      // 4. Vide l'input
+      this.messageInput.value = '';
+
+      // 5. Envoie le message au serveur
       const savedMessage = await ApiService.sendMessage(messageData);
       if (savedMessage) {
         this.currentConversation.lastMessage = messageText;

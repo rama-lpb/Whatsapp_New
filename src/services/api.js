@@ -10,7 +10,7 @@ export class ApiService {
       if (!response.ok) {
         const errorText = await response.text();
         console.error('API Error for', endpoint, ':', errorText);
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
       }
       return await response.json();
     } catch (error) {
@@ -109,5 +109,22 @@ export class ApiService {
 
   static async searchContacts(query) {
     return this.request(`users/search?q=${encodeURIComponent(query)}`);
+  }
+
+  // Nouvelle méthode pour envoyer un message dans une conversation
+  static async sendMessageInConversation(participants, senderId, content) {
+    // 1. Créer la conversation si elle n'existe pas déjà
+    const conversation = await this.createConversation({ participants });
+
+    // 2. Utiliser l'id retourné pour envoyer le message
+    const messageData = {
+      conversationId: conversation.id, // doit exister côté serveur !
+      senderId,
+      content,
+      timestamp: new Date().toISOString(),
+      type: 'text',
+      status: 'sent'
+    };
+    await this.sendMessage(messageData);
   }
 }
