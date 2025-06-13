@@ -4,20 +4,17 @@ export class ApiService {
   static async request(endpoint, options = {}) {
     try {
       const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          ...options.headers
-        },
+        headers: { 'Content-Type': 'application/json' },
         ...options
       });
-
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API Error for', endpoint, ':', errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
       return await response.json();
     } catch (error) {
-      console.error(`API Error for ${endpoint}:`, error);
+      console.error('API Error for', endpoint, ':', error);
       throw error;
     }
   }
