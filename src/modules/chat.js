@@ -295,6 +295,7 @@ export class ChatManager {
 
       // 2. Prépare le message avec l'id de conversation correct
       const messageData = {
+        id: Date.now().toString(), // ou utilise une autre méthode unique
         conversationId,
         senderId: this.currentUser.id,
         content: messageText,
