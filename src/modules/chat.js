@@ -267,49 +267,40 @@ export class ChatManager {
   }
 
   async sendMessage() {
-    if (!this.messageInput || !this.currentConversation || !this.currentUser) return;
-    
-    const content = this.messageInput.value.trim();
-    if (!content) return;
+    const messageText = this.messageInput.value.trim();
+    if (!messageText) return;
 
     const messageData = {
-      id: parseInt(Math.random().toString(36).substr(2, 9)),
+      id: Date.now().toString(),
       conversationId: this.currentConversation.id,
       senderId: this.currentUser.id,
-      content: content,
+      content: messageText,
       timestamp: new Date().toISOString(),
       type: 'text',
       status: 'sent'
     };
 
-    try {
-      // Ajouter le message localement d'abord
-      this.messages.push(messageData);
-      this.renderMessages();
-      this.messageInput.value = '';
+    // Ajouter le message localement d'abord
+    this.messages.push(messageData);
+    this.renderMessages();
+    this.messageInput.value = '';
 
-      // Envoyer au serveur
-      const savedMessage = await ApiService.sendMessage(messageData);
-      if (savedMessage) {
-        // Mettre à jour la conversation
-        this.currentConversation.lastMessage = this.messageInput.value; // ou le texte du message envoyé
-        this.currentConversation.lastMessageTime = new Date().toISOString();
+    // Envoyer au serveur
+    const savedMessage = await ApiService.sendMessage(messageData);
+    if (savedMessage) {
+      // Mettre à jour la conversation avec le texte du message envoyé
+      this.currentConversation.lastMessage = messageText;
+      this.currentConversation.lastMessageTime = messageData.timestamp;
 
-        // Mets à jour côté ContactsManager
-        if (this.contactsManager && typeof this.contactsManager.updateConversation === 'function') {
-          this.contactsManager.updateConversation(this.currentConversation);
-        }
-
-        // Notifier les autres modules
-        document.dispatchEvent(new CustomEvent('messageSent', { 
-          detail: { message: savedMessage, conversation: this.currentConversation } 
-        }));
+      // Mets à jour côté ContactsManager
+      if (this.contactsManager && typeof this.contactsManager.updateConversation === 'function') {
+        this.contactsManager.updateConversation(this.currentConversation);
       }
-    } catch (error) {
-      console.error('Erreur lors de l\'envoi du message:', error);
-      // Retirer le message de la liste locale en cas d'erreur
-      this.messages.pop();
-      this.renderMessages();
+
+      // Notifier les autres modules
+      document.dispatchEvent(new CustomEvent('messageSent', { 
+        detail: { message: savedMessage, conversation: this.currentConversation } 
+      }));
     }
   }
 

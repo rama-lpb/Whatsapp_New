@@ -72,6 +72,7 @@ export class ApiService {
   }
 
   static async sendMessage(messageData) {
+    console.log('Message envoyé à l’API:', messageData); // Ajoute ce log
     return this.request('messages', {
       method: 'POST',
       body: JSON.stringify(messageData)
