@@ -21,6 +21,7 @@ export class ChatManager {
     this.contactsManager = contactsManager;
     
     this.initEventListeners();
+    this.initializeEmptyState();
   }
 
   initEventListeners() {
@@ -46,7 +47,7 @@ export class ChatManager {
 
     // Fermer le menu en cliquant ailleurs
     document.addEventListener('click', (e) => {
-      if (this.chatMenu && !this.chatMenu.contains(e.target) && !this.chatMenuBtn.contains(e.target)) {
+      if (this.chatMenu && !this.chatMenu.contains(e.target) && this.chatMenuBtn && !this.chatMenuBtn.contains(e.target)) {
         DOMUtils.hide(this.chatMenu);
       }
     });
@@ -63,6 +64,21 @@ export class ChatManager {
     document.addEventListener('userLoggedIn', (e) => {
       this.currentUser = e.detail;
     });
+  }
+
+  initializeEmptyState() {
+    // Cacher le menu hamburger au démarrage
+    if (this.chatMenuBtn) {
+      DOMUtils.hide(this.chatMenuBtn);
+    }
+    
+    // Cacher la zone de saisie au démarrage
+    if (this.messageInputContainer) {
+      DOMUtils.hide(this.messageInputContainer);
+    }
+    
+    // Afficher le message de bienvenue
+    this.showWelcomeMessage();
   }
 
   initChatMenuActions() {
@@ -136,7 +152,7 @@ export class ChatManager {
   }
 
   toggleChatMenu() {
-    if (this.chatMenu) {
+    if (this.chatMenu && this.currentConversation) {
       DOMUtils.toggle(this.chatMenu);
     }
   }
@@ -241,9 +257,8 @@ export class ChatManager {
     messageDiv.innerHTML = `
       <div class="max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
         isOwn 
-          ? 'bg-black text-white' 
-          : 'bg-gray-700 text-white'// Initialize the application
-
+          ? 'bg-yellow-600 text-white' 
+          : 'bg-gray-700 text-white'
       }">
         <p class="text-sm">${message.content}</p>
         <div class="flex items-center justify-end mt-1 space-x-1">
@@ -268,22 +283,18 @@ export class ChatManager {
 
   async sendMessage() {
     const messageText = this.messageInput.value.trim();
-    if (!messageText) return;
+    if (!messageText || !this.currentConversation) return;
 
     try {
-      // 1. Vérifie si la conversation a un id côté serveur, sinon crée-la
       let conversationId = this.currentConversation.id;
       if (!conversationId) {
         const participants = this.currentConversation.participants || [
           this.currentUser.id,
           this.currentContact.id
         ];
-        // Crée la conversation côté serveur et récupère l'objet conversation complet
         const createdConv = await ApiService.createConversation({ participants });
 
-        // Ajoute une vérification et un délai si besoin
         if (createdConv && createdConv.id) {
-          // Optionnel : attendre 200ms pour laisser le temps au backend d'écrire
           await new Promise(res => setTimeout(res, 200));
           conversationId = createdConv.id;
           this.currentConversation = createdConv;
@@ -293,9 +304,8 @@ export class ChatManager {
         }
       }
 
-      // 2. Prépare le message avec l'id de conversation correct
       const messageData = {
-        id: Date.now().toString(), // ou utilise une autre méthode unique
+        id: Date.now().toString(),
         conversationId,
         senderId: this.currentUser.id,
         content: messageText,
@@ -304,12 +314,10 @@ export class ChatManager {
         status: 'sent'
       };
 
-      // 3. Ajoute le message localement pour affichage immédiat
       this.messages.push(messageData);
       this.renderMessages();
       this.messageInput.value = '';
 
-      // 4. Envoie le message au serveur
       const savedMessage = await ApiService.sendMessage(messageData);
       if (savedMessage) {
         this.currentConversation.lastMessage = messageText;
@@ -341,32 +349,22 @@ export class ChatManager {
     });
   }
 
-  // Actions du menu
   closeChat() {
     this.currentConversation = null;
     this.currentContact = null;
     this.messages = [];
     
-    // Vider le header
     if (this.chatHeaderContent) {
       this.chatHeaderContent.innerHTML = '';
     }
     
-    // Cacher le menu et la zone de saisie
     this.hideChatMenu();
     DOMUtils.hide(this.messageInputContainer);
-
-    // Cacher le bouton hamburger
-    if (this.chatMenuBtn) {
-      DOMUtils.hide(this.chatMenuBtn);
-    }
 
     if (this.messageInput) this.messageInput.disabled = true;
     if (this.sendButton) this.sendButton.disabled = true;
     
-    // Afficher le message de bienvenue
     this.showWelcomeMessage();
-    
     showNotification('Chat fermé');
   }
 
@@ -384,23 +382,19 @@ export class ChatManager {
 
   showSearchInChat() {
     showNotification('Fonction de recherche en développement');
-    // TODO: Implémenter la recherche dans le chat
   }
 
   showSharedMedia() {
     showNotification('Médias partagés en développement');
-    // TODO: Afficher les médias partagés
   }
 
   toggleMuteNotifications() {
     showNotification('Notifications coupées pour ce contact');
-    // TODO: Implémenter la logique de mute
   }
 
   blockContact() {
     if (!this.currentContact) return;
 
-    // Affiche un popup de confirmation personnalisé
     showNotification(
       `Voulez-vous vraiment bloquer ${this.currentContact.name} ?`,
       {
@@ -409,7 +403,6 @@ export class ChatManager {
         onConfirm: () => {
           showNotification(`${this.currentContact.name} a été bloqué`);
           this.closeChat();
-          // TODO: Implémenter la logique de blocage
         }
       }
     );
@@ -427,7 +420,6 @@ export class ChatManager {
           this.messages = [];
           this.renderMessages();
           showNotification('Conversation vidée');
-          // TODO: Supprimer les messages du serveur
         }
       }
     );
@@ -455,47 +447,10 @@ export class ChatManager {
     `;
   }
 
-  // Fonction pour exporter la conversation
-  exportConversation() {
-    if (!this.messages.length) {
-      showNotification('Aucun message à exporter');
-      return;
-    }
-    
-    const conversationText = this.messages.map(msg => {
-      const sender = msg.senderId === this.currentUser.id ? 'Vous' : this.currentContact.name;
-      const time = this.formatTime(msg.timestamp);
-      return `[${time}] ${sender}: ${msg.content}`;
-    }).join('\n');
-    
-    const blob = new Blob([conversationText], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `conversation_${this.currentContact.name}_${new Date().toISOString().split('T')[0]}.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
-    
-    showNotification('Conversation exportée');
-  }
-
-  // Fonction pour marquer tous les messages comme lus
-  markAllAsRead() {
-    this.messages.forEach(msg => {
-      if (msg.senderId !== this.currentUser.id) {
-        msg.status = 'read';
-      }
-    });
-    this.renderMessages();
-    showNotification('Tous les messages marqués comme lus');
-  }
-
-  // Nouvelle méthode à ajouter dans ChatManager
   toggleFavorite() {
     if (!this.currentConversation) return;
     this.currentConversation.isFavorite = !this.currentConversation.isFavorite;
 
-    // Mets à jour le texte du bouton
     const chatFavoriteBtn = document.getElementById('chat-favorite-btn');
     if (chatFavoriteBtn) {
       chatFavoriteBtn.textContent = this.currentConversation.isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris';

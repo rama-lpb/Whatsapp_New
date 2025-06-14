@@ -1,9 +1,10 @@
-import './index.css'; // ← IMPORTANT: Gardez cette ligne !
+import './index.css';
 
 import { AuthManager } from './modules/auth.js';
 import { ContactsManager } from './modules/contacts.js';
 import { ChatManager } from './modules/chat.js';
 import { UIManager } from './modules/ui.js';
+import { NavigationManager } from './modules/navigation.js';
 import { stateManager } from './modules/state.js';
 import { showNotification } from './utils/notifications.js';
 
@@ -13,12 +14,12 @@ class App {
     this.contactsManager = null;
     this.chatManager = null;
     this.uiManager = null;
+    this.navigationManager = null;
     
     this.init();
   }
 
   init() {
-    // Wait for DOM to be ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => this.initializeApp());
     } else {
@@ -30,8 +31,9 @@ class App {
     try {
       this.authManager = new AuthManager();
       this.contactsManager = new ContactsManager();
-      this.chatManager = new ChatManager(this.contactsManager); // Passe la référence ici
+      this.chatManager = new ChatManager(this.contactsManager);
       this.uiManager = new UIManager();
+      this.navigationManager = new NavigationManager();
 
       this.setupGlobalEventListeners();
       this.setupConversationFilters();
@@ -49,11 +51,8 @@ class App {
     const filters = document.querySelectorAll('#filters [data-filter]');
     filters.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Retire la couleur jaune de tous les boutons
         filters.forEach(b => b.classList.remove('bg-yellow-500'));
-        // Ajoute la couleur jaune au bouton cliqué
         btn.classList.add('bg-yellow-500');
-        // Le texte reste blanc grâce à 'text-white' déjà présent dans le HTML
         document.dispatchEvent(new CustomEvent('filterChanged', { detail: btn.dataset.filter }));
       });
     });
@@ -70,7 +69,6 @@ class App {
     });
 
     document.addEventListener('filterChanged', (e) => {
-      // Appelle la méthode de filtrage du ContactsManager
       if (this.contactsManager && typeof this.contactsManager.filterConversations === 'function') {
         this.contactsManager.filterConversations(e.detail);
       }
